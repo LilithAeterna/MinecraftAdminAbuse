@@ -3,7 +3,8 @@ command /aatekst <text>:
     permission message: "&cNo permission!"
     trigger:
         if player is op:
-            send title "" with subtitle arg 1 to player
+            loop all players:
+                send title "" with subtitle arg 1 to loop-player for 10 seconds
         else:
             send "&cYou need to be OP to use this!" to player
 
