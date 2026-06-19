@@ -8,7 +8,6 @@ command /aatekst <text>:
         else:
             send "&cYou need to be OP to use this!" to player
 
-
 command /aatnt <player>:
     permission: skript.op
     permission message: "&cNo permission!"
@@ -22,7 +21,6 @@ command /aatnt <player>:
             spawn primed tnt at {_loc} ~ vector(0, 0, -2)
         else:
             send "&cYou need to be OP to use this!" to player
-
 
 command /aaloteria <number> <item type>:
     permission: skript.op
@@ -47,7 +45,6 @@ command /aaloteria <number> <item type>:
         else:
             send "&cYou need to be OP to use this!" to player
 
-
 command /aaeqprank <player>:
     permission: skript.op
     permission message: "&cNo permission!"
@@ -65,4 +62,29 @@ command /aaeqprank <player>:
             send title "&c&lINVENTORY SHUFFLED!" with subtitle "&7Your items got shuffled!" to arg 1
         else:
             send "&cYou need to be OP to use this!" to player
-            
+
+command /aaslap <player>:
+    permission: skript.op
+    permission message: "&cNo permission!"
+    trigger:
+        if player is op:
+            push arg 1 upwards with force 3
+            send title "&c&lYOU GOT SLAPPED!" with subtitle "&7By %player%" to arg 1
+        else:
+            send "&cYou need to be OP to use this!" to player
+
+command /aatimer <number>:
+    permission: skript.op
+    permission message: "&cNo permission!"
+    trigger:
+        if player is op:
+            set {timer} to arg 1
+            loop arg 1 times:
+                loop all players:
+                    send title "&e&l%{timer}%" with subtitle "&7Timer" to loop-player
+                wait 1 second
+                subtract 1 from {timer}
+            loop all players:
+                send title "&a&lTIME'S UP!" with subtitle "" to loop-player
+        else:
+            send "&cYou need to be OP to use this!" to player
