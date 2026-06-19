@@ -1,0 +1,67 @@
+command /aatekst <text>:
+    permission: skript.op
+    permission message: "&cNo permission!"
+    trigger:
+        if player is op:
+            send title "" with subtitle arg 1 to player
+        else:
+            send "&cYou need to be OP to use this!" to player
+
+
+command /aatnt <player>:
+    permission: skript.op
+    permission message: "&cNo permission!"
+    trigger:
+        if player is op:
+            set {_loc} to location of arg 1
+            spawn primed tnt at {_loc}
+            spawn primed tnt at {_loc} ~ vector(2, 0, 0)
+            spawn primed tnt at {_loc} ~ vector(-2, 0, 0)
+            spawn primed tnt at {_loc} ~ vector(0, 0, 2)
+            spawn primed tnt at {_loc} ~ vector(0, 0, -2)
+        else:
+            send "&cYou need to be OP to use this!" to player
+
+
+command /aaloteria <number> <item type>:
+    permission: skript.op
+    permission message: "&cNo permission!"
+    usage: "&cUse: /aaloteria <1-100> <item> | Example: /aaloteria 50 diamond"
+    trigger:
+        if player is op:
+            if arg 1 is less than 1:
+                send "&cPercentage must be between &e1 &cand &e100&c!" to player
+                stop
+            if arg 1 is greater than 100:
+                send "&cPercentage must be between &e1 &cand &e100&c!" to player
+                stop
+            loop all players:
+                set {_chance} to random integer between 1 and 100
+                set {_percent} to "%arg 1%%%"
+                if {_chance} <= arg 1:
+                    give arg 2 to loop-player
+                    send title "&a&lYOU WON!" with subtitle "&7You had &a%{_percent}% &7chance for &a%arg 2%" to loop-player
+                else:
+                    send title "&c&lYOU LOST!" with subtitle "&7You had &c%{_percent}% &7chance for &a%arg 2%" to loop-player
+        else:
+            send "&cYou need to be OP to use this!" to player
+
+
+command /aaeqprank <player>:
+    permission: skript.op
+    permission message: "&cNo permission!"
+    trigger:
+        if player is op:
+            loop integers from 0 to 35:
+                set {_items::%loop-integer%} to slot loop-integer of inventory of arg 1
+            loop integers from 0 to 35:
+                set {_rand} to random integer between 0 and 35
+                set {_temp} to {_items::%loop-integer%}
+                set {_items::%loop-integer%} to {_items::%{_rand}%}
+                set {_items::%{_rand}%} to {_temp}
+            loop integers from 0 to 35:
+                set slot loop-integer of inventory of arg 1 to {_items::%loop-integer%}
+            send title "&c&lINVENTORY SHUFFLED!" with subtitle "&7Your items got shuffled!" to arg 1
+        else:
+            send "&cYou need to be OP to use this!" to player
+            
