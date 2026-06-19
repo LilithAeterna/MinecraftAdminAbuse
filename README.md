@@ -1,2 +1,2 @@
-# Vesstalia
-Minecraft Admin Abuse Skript 
+# Admin abuse for Minecraft
+Skript Script for mc
