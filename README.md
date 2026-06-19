@@ -6,7 +6,8 @@ Be sure you have instaled Skript
 How to insert?
 Plugins->Skript->scripts
 
-Update 1
+-----------------------------------
+Update 1       19.06.2026
 added 2 new commands
 1. /aatimer
 2. /aaslap
